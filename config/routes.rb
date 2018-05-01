@@ -4,6 +4,10 @@ Rails.application.routes.draw do
 
   resources :products, only: [:index, :show]
   resources :categories, only: [:show]
+  resource :users, only: [:new, :create]
+  resource :sessions, only: [:new, :create]
+
+  get '/logout' => 'sessions#destroy'
 
   resource :cart, only: [:show] do
     put    :add_item
