@@ -7,9 +7,11 @@ class OrdersController < ApplicationController
   def create
     charge = perform_stripe_charge
     order  = create_order(charge)
+    @user = User.new(params[:user])
 
     if order.valid?
       empty_cart!
+      UserMailer.welcome_email(@user).deliver
       redirect_to order, notice: 'Your Order has been placed.'
     else
       redirect_to cart_path, flash: { error: order.errors.full_messages.first }
@@ -44,7 +46,9 @@ class OrdersController < ApplicationController
     cart.each do |product_id, details|
       if product = Product.find_by(id: product_id)
         quantity = details['quantity'].to_i
+        puts quantity
         order.line_items.new(
+          product_id: product_id,
           product: product,
           quantity: quantity,
           item_price: product.price,

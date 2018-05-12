@@ -1,0 +1,14 @@
+<section class="admin-new">
+
+  <header class="page-header">
+    <h1>Admin Login!</h1>
+  </header>
+  <%= form_tag '/sessions' do %>
+
+    Admin username: <%= text_field_tag :username %>
+    Password: <%= password_field_tag :password %>
+    <%= submit_tag "Submit" %>
+
+  <% end %>
+
+</section>
