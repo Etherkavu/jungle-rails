@@ -2,6 +2,11 @@
 
 A mini e-commerce application built with Rails 4.2 for purposes of teaching Rails by example.
 
+## Features
+1. User login system
+2. Admin check for admin pages
+3. admin catagory/product creation ability
+4. Prevents checkout of empty cart
 
 ## Setup
 
